@@ -50,7 +50,7 @@
 
 /*General & Text Content*/
 
-#header-content, #body-content, #body-desktop, #body-mobile, #topbar-mobile, #topbar-desktop{
+#header-content, #body-content, #body-desktop, #body-mobile, #topbar-mobile, #topbar-desktop, .form-row {
 	background: #FFF;
 }
 
@@ -79,15 +79,23 @@ i {
 	color: #C3C	!important;
 }
 
-.fi-megaphone {
+.fi-microphone {
 	color: #99C	!important;
 }
 
-.fi-share {
-	color: #99C	!important;
+.fi-megaphone {
+	color: #6CF	!important;
 }
 
 .fi-torso {
+	color: #C3C	!important;
+}
+
+.fi-info {
+	color: #99C	!important;
+}
+
+.fi-list {
 	color: #6CF	!important;
 }
 
@@ -135,7 +143,7 @@ i {
 
 .li-desktop {
 	float: left;
-	width: 18.8% !important;
+	width: 13.2% !important;
 	padding-top: .5em;
 	margin: 0 5px;
 	border-radius: 1000px;
@@ -361,10 +369,9 @@ i {
 
 .row-desktop:nth-child(2) {
 	position: relative;	
-	width: 650px;
-	transform: translate(10px, -60px);
+	width: 420px;
+	transform: translate(0px, -60px);
 }
-
 .row-desktop:nth-child(3) {
 	position: relative;	
 	width: 525px;
@@ -398,4 +405,75 @@ i {
 	color: #6CF;
 }
 
+.login-head {
+	position: relative;
+	font-family: Walkway;
+	font-size: 1.5em;
+	color: #101010 ;
+}
 
+.login-subhead {
+	position: relative;
+	font-family: Walkway;
+	font-size: 1em;
+	color: #101010 ;
+}
+
+.login-form, .signup-form {
+	position: relative;
+	width: 35%;
+	margin-top: 120px;
+	left: 50%;
+	transform: translateX(-50%);
+	padding-bottom: 100px;
+}
+
+.login-submit {
+	width: 49.2%;
+	position: relative;
+	border-radius: 10px;
+}
+
+.login-signup {
+	width: 49.2%;
+	position: relative;
+	border-radius: 10px;
+}
+
+.signup-submit {
+	width: 50%;
+	position: relative;
+	border-radius: 10px;
+	left: 50%;
+	transform: translateX(0, 50%);
+}
+
+.signup-name {
+	position: relative;
+
+}
+
+.signup-fb {
+	position: relative;
+
+}
+
+.signup-uname {
+	position: relative;
+
+}
+
+.signup-email {
+	position: relative;
+
+}
+
+.signup-pword {
+	position: relative;
+
+}
+
+.signup-pword2 {
+	position: relative;
+
+}

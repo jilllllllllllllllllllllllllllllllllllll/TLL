@@ -22,7 +22,7 @@
     "domain": null,
     "convertHtml": {
         "path": null,
-        "extension": ".html",
+        "extension": ".php",
         "ignoreUrls": null,
         "relativePaths": false,
         "default": null
