@@ -500,6 +500,23 @@ i {
 	margin-left: 20%;
 }
 
+.profile-header img {
+	border: double 1px #A3CCA3;
+	border-radius: 1000px;
+	max-width: 75%;
+	margin-left: 20%;
+}
+
+.profile-header {
+	position: relative;
+	width: 30% !important;
+	margin-top: 5% !important;
+	border-right: solid 2px #A3CCA3;
+	float: left;
+
+	height: 250px;
+}
+
 .news-header, .events-header {
 	position: relative;
 	width: 25% !important;

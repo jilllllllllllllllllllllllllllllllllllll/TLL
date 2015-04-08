@@ -23,8 +23,10 @@
             <section id="home-content">
             
               <div class="news-top">
-                	<div class="news-header">
+                	<div class="profile-header">  
+                        <?php while ($row = mysql_fetch_assoc($result)): ?>
                 		    <img src="<?php echo "{$row['image']}" ?>" alt="news">
+                        <?php endwhile; ?>
                 	</div>
                   
                   <div class="news-carousel">
@@ -58,7 +60,7 @@
 	
 	<?php 
         else :
-            header('Location: index.html');
+            header('Location: index.php');
         endif;
     ?>
 

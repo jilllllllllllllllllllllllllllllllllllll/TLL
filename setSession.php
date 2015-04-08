@@ -19,9 +19,7 @@
 		}
 
 	if(mysql_num_rows($result) > 0){
-
 			session_start();
-
 			$_SESSION["username"] = $username = $_POST['username'];
 			$_SESSION["password"] = $password = $_POST['password'];
 			$_SESSION["admin"] = $isAdmin;

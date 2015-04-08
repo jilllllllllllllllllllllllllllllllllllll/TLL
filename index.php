@@ -67,7 +67,7 @@
         </section> 
     </section>
 
-    <?php if (!PHP_SESSION_NONE): ?>
+    <?php if (PHP_SESSION_NONE): ?>
 
     <section id="body-content">
     	<section id="body-desktop" class="show-for-large-up">
