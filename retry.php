@@ -33,7 +33,7 @@
                         <h1> Activity </h1>
                     </div>
                 </a>
-                <a href="events.html">
+                <a href="events.php">
                     <div class="li-desktop">
                         <i class="fi-megaphone"></i>
                         <h1> Events </h1>
@@ -44,19 +44,19 @@
                         <img src="assets/img/logo_.png">
                     </div>
                 </a>
-                <a href="lists.html">
+                <a href="list.php">
                     <div class="li-desktop">
                         <i class="fi-list"></i>
                         <h1> Lists </h1>
                     </div>
                 </a>
-                <a href="faq.html">
+                <a href="faq.php">
                     <div class="li-desktop">
                         <i class="fi-info"></i>
                         <h1> Faq </h1>
                     </div>
                 </a>
-                <a href="account.html">
+                <a href="account.php">
                     <div class="li-desktop">
                         <i class="fi-torso"></i>
                         <h1> Account </h1>

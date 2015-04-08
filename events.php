@@ -29,7 +29,7 @@
                 	?>
 
                 	<?php 
-    					if ($_SESSION["admin"] == 1): ?>
+    					if ($_SESSION["admin"] == "yes"): ?>
     		                <a href="#" data-reveal-id="addEventsMod" class="addNews"><span>Add Event</span></a>
     							<div id="addEventsMod" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     							  	<form id="modalTitle" action="addEvent.php" method="post" enctype="multipart/form-data">
@@ -41,7 +41,7 @@
                                                 <option value="March">January</option>
                                                 <option value="April">January</option>
                                                 <option value="May">January</option>
-                                                <option value="June">January</option>
+                                                <option value="June">March</option>
                                                 <option value="July">January</option>
                                                 <option value="August">January</option>
                                                 <option value="September">January</option>
@@ -108,8 +108,8 @@
                         <span class="event-title"> <?php echo "{$row['event_name']}"; ?>: </span>
                         <span class="event-date"> <?php echo "{$row['event_date']}"; ?><br> </span>
                         <span class="event-location"> Location: <?php echo "{$row['event_location']}"; ?><br><br> </span>
-                        <span class="event-desc"> <?php echo "{$row['event_desc']}"; ?><br><br></span>
-                        <span class="event-link"> Source: <?php echo "<a href='{$row['event_link']}'>Event Page</a>"; ?></span>
+                        <span class="event-desc"> <?php echo "{$row['event_descritption']}"; ?><br><br></span>
+                        <span class="event-link"> Source: <?php echo "<a href='{$row['event_page_link']}'>Event Page</a>"; ?></span>
                 </div>
                 <?php endwhile; ?>
                 

@@ -668,3 +668,24 @@ i {
 .event-link {
 	margin-left: 70%;
 }
+
+.
+
+.profile-name {
+
+}
+
+.profile-cn {
+
+}
+
+.profile-fb {
+
+}
+
+.list-body {
+	position: absolute !important;
+	top: 150px;
+	left: 50%;
+	transform: translateX(-50%);
+}

@@ -26,7 +26,7 @@
                 		<span class="success label news-alert"> News added. </span>
                 <?php	$_SESSION["newsAdded"] = 0; endif; ?>
 
-    					  <?php if ($_SESSION["admin"] == 1): ?>
+    					  <?php if ($_SESSION["admin"] == "yes"): ?>
     		                <a href="#" data-reveal-id="addNewsMod" class="addNews"><span> Add Content </span> </a>
             							<div id="addNewsMod" class="reveal-modal" data-reveal aria-labelledby="newsForm" aria-hidden="true" role="dialog">
             							  	<form id="newsForm" action="addNews.php" method="post" enctype="multipart/form-data">

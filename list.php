@@ -13,11 +13,12 @@
 </head>
 
 <body>
+  <div class="list-body">
 	 <center>
     <br><br><br>
-    <a href = "#"  >Add New List</a>
-    <a href = "logout.php" >Log out</a>
-    ?>
+    <a href= "#" class="button">Add New List</a>
+    <a href = "logout.php" class="button" >Log out</a>
+    
     <h3>Requirements</h3>
     <table>
       <tr>
@@ -115,7 +116,7 @@
      `scale`, `figure_name`, `Name`, `days`) 
     VALUES ('0', 'GSC', 'Large', 'Tomoe Mami', 'Jill', '2');
      */?>
-    <a href="list/add.php"> Add</a> <hr>
+    <a href="list/add.php" class="button"> Add</a> <hr>
     <?php //===================ID HOLDERS HERE ====================?>
     <?php 
       $sql = "SELECT * FROM users WHERE users.idHolder = 'yes'";
@@ -141,33 +142,9 @@
     
     <?php endwhile; ?>
     </table>
-    
-
-<form action="addIDs.php" method = "post">
-Add User<select name="event">
-  <option value=""></option>
-  <?php
   
-    $sql = "SELECT * users";
-    $result  = mysql_query($sql);
-    
-    while ($row = mysql_fetch_assoc($result)): 
-    $user = $row['Name'];
-    echo "<option value='$user'>$user</option>";
-    endwhile;
-    
-  ?>
-  </select>
-  
-</form>
-
-
-
-        
-      <br>reference pic:<br>
-      <img src ="images/tll_listsPage.png" height = 500>
     
     </center>
-
+</div>
 </body>
 </html>
