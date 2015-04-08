@@ -1,0 +1,31 @@
+<section id="topbar-mobile" class="contain-to-grid show-for-medium-down">
+            <div id="line">
+                <hr class="topbar-line-left show-for-medium-only">
+                <hr class="topbar-line-right show-for-medium-only">
+            </div>
+            <div id="logo-mobile" class="row">
+                <img src="assets/img/logo.png" class="logo-z">
+            </div>
+            <div class="row">
+                <a href="home.php">
+                    <div class="small-3 mob-icon active-icon">
+                        <i class="fi-home"></i>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="small-3 mob-icon">
+                        <i class="fi-megaphone"></i>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="small-3 mob-icon">
+                        <i class="fi-share"></i>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="small-3 mob-icon">
+                        <i class="fi-torso"></i>
+                    </div>
+                </a>
+            </div>
+        </section>

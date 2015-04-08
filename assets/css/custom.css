@@ -143,7 +143,7 @@ i {
 
 .li-desktop {
 	float: left;
-	width: 13.2% !important;
+	width: 13% !important;
 	padding-top: .5em;
 	margin: 0 5px;
 	border-radius: 1000px;
@@ -169,7 +169,7 @@ i {
 	cursor: default;
 }
 
-.li-desktop h1{
+.li-desktop h1 {
 	position: relative;
 	text-align: center;
 	color: #99C;
@@ -179,19 +179,6 @@ i {
 	position: relative;
 	left: 50% ;
 	transform: translateX(-50%);
-}
-
-#search-form i {
-	position: relative;
-	left: 25%;
-}
-
-#search-form {
-	position: fixed;
-	margin-top: 5px;
-	right: 25px;
-	width: 175px;
-	height: 1.5em;
 }
 
 .search {
@@ -398,11 +385,16 @@ i {
 	border-bottom: thin double #9CF;
 }
 
-.index-subhead {
+.index-subhead, .news-subhead {
 	position: relative;
 	font-family: Walkway;
 	font-size: 2em;
 	color: #6CF;
+}
+
+.news-subhead {
+	font-size: .8em;
+	color: #000;
 }
 
 .login-head {
@@ -419,7 +411,7 @@ i {
 	color: #101010 ;
 }
 
-.login-form, .signup-form {
+.login-form {
 	position: relative;
 	width: 35%;
 	margin-top: 120px;
@@ -429,51 +421,233 @@ i {
 }
 
 .login-submit {
-	width: 49.2%;
 	position: relative;
-	border-radius: 10px;
-}
-
-.login-signup {
-	width: 49.2%;
-	position: relative;
-	border-radius: 10px;
-}
-
-.signup-submit {
-	width: 50%;
-	position: relative;
-	border-radius: 10px;
+	border-radius: 10px !important;
 	left: 50%;
-	transform: translateX(0, 50%);
+	transform: translateX(-50%);	
 }
 
-.signup-name {
+.news-text {
+	margin-top: 2%;
 	position: relative;
+	left: 50%;
+	transform: translateX(-50%);	
+	width: 75% !important;
+	text-align: justify;
+	border: dashed #A3CCA3 1px;
+	border-radius: 50px;
+	padding: 4%;
+	padding-top: 1% !important;
+}
+
+.news-title {
+	position: relative;
+	color: #333;
+}
+
+.news-date {
+	position: relative;
+
+	color: #808080 !important;
+	font-size: .5em;
+}
+
+#setSession {
+	position: absolute;
+	width: 32%;
+	margin-top: 35px;
+	left: 11%;
+	font-family: ChampagneLimousines;
+	background-color: #FFF;
+	border-radius: 10px;
+}
+
+.inSession {
+	margin-left: 3%;
+	font-size: 1.2em;
+	color: #99C;
+}
+
+#logout {
+	position: absolute;
+	width: 32%;
+	margin-top: 35px;
+	right: 11%;
+	font-family: ChampagneLimousines;
+	background-color: #FFF;
+	border-radius: 10px;
+}
+
+.logout-t a{
+	float: right;
+	margin-right: 5%;
+	font-size: 1.2em;
+	color: #99C !important;
+}
+
+.login-error {
+	border-color: #C60 !important;
+}
+
+.add-news-content {
+	height: 15em !important;
+}
+
+.news-header img, .events-header img {
+	border: double 1px #A3CCA3;
+	border-radius: 1000px;
+	max-width: 75%;
+	margin-left: 20%;
+}
+
+.news-header, .events-header {
+	position: relative;
+	width: 25% !important;
+	margin-top: 5% !important;
+	border-right: solid 2px #A3CCA3;
+	float: left;
+
+	height: 250px;
+}
+
+.events-header {
+	min-height: 500px;
+	height: auto !important;
+}
+
+.news-carousel {
+	position: relative;
+	width: 65% !important;
+	margin-top: 5% !important;
+	margin-left: 5%;
+	float: left;
+
+	height: 250px;
+}
+
+.news-carousel img {
+	max-height: 250px;
+}
+
+.news-top {
+	height: 325px;
+}
+.news-alert {
+	position: relative;
+	left: 10% !important;
+	height: 2em !important;
+	margin-top: 5%;
+	width: 50%;
+	border-radius: 1000px;
+	font-family: ChampagneLimousines !important;
+	line-height: 1.5em !important;	
+	background: #69BD88 !important;
+}
+
+.news-alert span {
+	padding: 2% !important;
+}
+
+.addNews {
+	position: absolute;
+	right: 10% !important;
+	height: 1.5em !important;
+	margin-top: 5%;
+	border-radius: 1000px;
+	background: #43AC6A;
+	width: 20% !important;
+	text-align: center !important;
+}
+
+.addNews:hover {
+	background: #2F784A !important;
+}
+.addNews span {
+	color: #FFF !important;
+	font-family: ChampagneLimousines;
+	line-height: 1.5em !important;
+	font-size: 0.6875rem;
+	padding: 2% !important;
+	margin-top: 0 !important;
+}
+
+.news-admin {
+	position: relative;
+	height: 3em;
+	width: 100%;
+}
+
+.add-event-title {
+	position: relative;
+	width: 50% !important;
+	float: left;
+}
+
+.add-event-date {
+	position: relative;
+	width: 40%;
+	float: left;
+	margin-left: 5%;
+}
+
+.add-event-location {
+	position: relative;
+	width: 50% !important;
+	float: left;
+}
+
+.add-event-page {
+	position: relative;
+	margin-left: 4% !important;
+	width: 45% !important;
+	float: left;
+}
+
+.addMonth {
+	width: 40%;
+}
+
+.addDate {
+	width: 20%;
+}
+
+.addYear {
+	width: 30%;
+}
+
+.events-text {
+	margin-top: 5%;
+	position: relative;
+	width: 65% !important;
+	border: dashed #A3CCA3 1px;
+	border-radius: 50px;
+	padding: 3%;
+	margin-left: 5%;
+	float: left;
+}
+
+.events-text span {
+	font-family: ChampagneLimousines;
+	text-align: justify;
+}
+
+.event-title {
+	font-size: 2em !important;
+	margin-left: 5%;
+}
+
+.event-date {
 
 }
 
-.signup-fb {
-	position: relative;
-
+.event-location {
+	margin-left: 5%;
 }
 
-.signup-uname {
-	position: relative;
-
+.event-desc {
+	margin-left: 5%;
 }
 
-.signup-email {
-	position: relative;
-
-}
-
-.signup-pword {
-	position: relative;
-
-}
-
-.signup-pword2 {
-	position: relative;
-
+.event-link {
+	margin-left: 70%;
 }
