@@ -13,13 +13,14 @@
 
 		include'database.php';
 
-		$rmFig = $_POST['removeFigure'];
+		$holder	= $_POST['addHolder'];
 
-		$sql_upd = "DELETE FROM lending_list WHERE pk_lending_list=$rmFig";
-		$result_upd = mysql_query($sql_upd);
 
-		$_SESSION["figureRemoved"] = 1;
+		$sql = "UPDATE users SET idHolder=1 WHERE ID=$holder";
+		$result  = mysql_query($sql);
 		
+		$_SESSION["idHolderAdded"] = 1;
+
 		header('Location: list.php')
 	?>
 

@@ -54,14 +54,14 @@
                 </div>
                 <div class="options">       
                     <a href="#" data-reveal-id="modNewsMod" class="modNews"><span> Add/Remove Figure </span></a>
-                    <a href="#" data-reveal-id="modNewsHLMod" class="modNews modNewsHL"><span> Add/Remove Lender </span></a>
+                    <a href="#" data-reveal-id="modNewsHLMod" class="modNews modNewsHL"><span> Add/Remove IDs </span></a>
                 </div>
                       <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modListForm" aria-hidden="true" role="dialog">
                         <a href="#" data-reveal-id="addListMod" class="arContent"><div><span> Add Figure </span></div></a>
                         <a href="#" data-reveal-id="removeListMod" class="arContent"><div><span> Remove Figure </span></div></a>
 
                           <div id="addListMod" class="reveal-modal" data-reveal aria-labelledby="listForm" aria-hidden="true" role="dialog">
-                              <form id="listForm" action="addList.php" method="post">
+                              <form id="listForm" action="addFigure.php" method="post">
                                       <input type="text" placeholder="Figure Name" class="add-figure-nm" name="figure_name">
                                       <input type="text" placeholder="Manufacturer" class="add-figure-mn" name="manufacturer">
                                       <select name="scale" class="add-figure-sc">
@@ -86,7 +86,7 @@
                                       <span class="rmNewsMsg"> Please select figure entry to delete: </span> 
                                       <select name="removeFigure" class="removeNews">
                                         <?php while ($row = mysql_fetch_assoc($result_dl)): ?>
-                                          <option value="<?php echo $row["id"]; ?>"> <?php echo $row['figure_name']; ?></option>
+                                          <option value="<?php echo $row["pk_lending_list"]; ?>"> <?php echo $row['figure_name']; ?></option>
                                         <?php endwhile; ?>
                                       </select>
                                       <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
@@ -102,9 +102,11 @@
 
                           <div id="addNewsHLMod" class="reveal-modal" data-reveal aria-labelledby="newsHLForm" aria-hidden="true" role="dialog">
                               <form id="addIDHolderForm" action="addIDHolder.php" method="post">
-                                      <?php while ($row = mysql_fetch_assoc($result_hd)): ?>
-                                          <option value="<?php echo $row["id"]; ?>"> <?php echo $row['Name']; ?></option>
-                                      <?php endwhile; ?> 
+                                      <select name="addHolder">
+                                        <?php while ($row = mysql_fetch_assoc($result_hd)): ?>
+                                            <option value="<?php echo $row["ID"]; ?>"> <?php echo $row['Name']; ?></option>
+                                        <?php endwhile; ?>
+                                      </select> 
                                       <input type="hidden" name="postedBy" value="<?php echo $_SESSION["username"]; ?>">
                                       <input type="submit" value="Submit" class="button login-submit" name="submit">
                               </form>
@@ -112,9 +114,9 @@
                           <div id="removeNewsHLMod" class="reveal-modal" data-reveal aria-labelledby="removeNewsHLForm" aria-hidden="true" role="dialog">
                                <form id="removeNewsHLForm" action="removeIDHolder.php" method="post" enctype="multipart/form-data">
                                       <span class="rmNewsMsg"> Please select user to remove from the list: </span> 
-                                      <select name="removeNewsHL" class="removeNews">
+                                      <select name="removeID" class="removeNews">
                                         <?php while ($row = mysql_fetch_assoc($result_hddl)): ?>
-                                        <option value="<?php echo $row["id"]; ?>"> <?php echo $row['Name']; ?></option>
+                                          <option value="<?php echo $row["ID"]; ?>"> <?php echo $row['Name']; ?></option>
                                         <?php endwhile; ?>
                                       </select>
                                       <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
@@ -140,16 +142,19 @@
                   </tr>
 
                   
-                  <?php while ($row = mysql_fetch_assoc($result_ll)) : ?>
+                  <?php 
+                  $i = 1;
+                  while ($row = mysql_fetch_assoc($result_ll)) : ?>
                   <tr>
-                  <td> <?php echo $row['pk_lending_list']; ?> </td>
+                  <td> <?php echo $i; ?> </td>
                   <td> <?php echo $row['manufacturer']; ?> </td>
                   <td> <?php echo $row['figure_name']; ?> </td>
                   <td> <?php echo $row['scale']; ?> </td>
                   <td> <?php echo $row['Name']; ?> </td>
                   <td> <?php echo $row['days']; ?> </td>
                   </tr>
-                  <?php endwhile; ?>
+                  
+                  <?php  $i++; endwhile; ?>
                   
                 </table>
               </div>
