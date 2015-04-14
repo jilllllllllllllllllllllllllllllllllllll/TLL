@@ -74,11 +74,11 @@
                                             </form>
                                         </div>
                           <div id="removeNewsMod" class="reveal-modal" data-reveal aria-labelledby="removeNewsForm" aria-hidden="true" role="dialog">
-                               <form id="removeNewsForm" action="removeNewsHL.php" method="post" enctype="multipart/form-data">
+                               <form id="removeNewsForm" action="removeEvent.php" method="post" enctype="multipart/form-data">
                                       <span class="rmNewsMsg"> Please select event item to delete: </span> 
                                       <select name="removeEvent" class="removeNews">
                                         <?php while ($row = mysql_fetch_assoc($result_del)): ?>
-                                        <option value="<?php echo $row["id"]; ?>"> <?php echo $row['title']; ?></option>
+                                            <option value="<?php echo $row["id"]; ?>"> <?php echo $row['title']?>: <?php echo $row['date']; ?></option>
                                         <?php endwhile; ?>
                                       </select>
                                       <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">

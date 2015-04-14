@@ -88,7 +88,7 @@
                                       <span class="rmNewsMsg"> Please select figure entry to delete: </span> 
                                       <select name="removeFigure" class="removeNews">
                                         <?php while ($row = mysql_fetch_assoc($result_dl)): ?>
-                                          <option value="<?php echo $row["pk_lending_list"]; ?>"> <?php echo $row['figure_name']; ?></option>
+                                          <option value="<?php echo $row["pk_lending_list"]; ?>"> <?php echo $row['figure_name']; ?> by <?php echo $row['Name']; ?></option>
                                         <?php endwhile; ?>
                                       </select>
                                       <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
