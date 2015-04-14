@@ -13,20 +13,21 @@
 
 		include'database.php';
 
-		$addTitle = $_POST['Title'];
-		$addContent = $_POST['Content'];
-		
-		$target_dir = 'assets/db/';
+		$addTitle = mysql_real_escape_string($_POST['Title']);
+		$addContent = mysql_real_escape_string($_POST['Content']);
+		$admin = $_POST['postedBy'];
+		$addTags = $_POST['Tags'];
+		$target_dir = 'assets/db/news_thumb/';
 		$target_file = $target_dir . basename($_FILES['activity-img']['name']);
-		$upload = move_uploaded_file($_FILES['activity-img']['tmp_name'], $target_file);
-		$addImage = $target_file;
 
-		$sql = "INSERT INTO `news`(Title, Content, ImageURL) VALUES ('$addTitle', '$addContent', '$addImage')";
-		$result = mysql_query($sql);
+				$upload = move_uploaded_file($_FILES['activity-img']['tmp_name'], $target_file);
+				$addImage = basename($_FILES['activity-img']['name']);
+				
+				$sql = "INSERT INTO `news`(Title, Content, ImageURL, Creator, tags) VALUES ('$addTitle', '$addContent', '$addImage', '$admin', '$addTags')";
+				$result = mysql_query($sql);
+
+				$_SESSION["newsAdded"] = 1;
 		
-		//insert restrictions
-
-		$_SESSION["newsAdded"] = 1;
 		header('Location: activity.php')
 	?>
 

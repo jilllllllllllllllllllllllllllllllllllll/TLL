@@ -3,6 +3,9 @@
 
 	$sql = "SELECT * FROM users WHERE Name = '".$_SESSION['username']."'";
   $result = mysql_query($sql);
+
+  $sql_del = "SELECT * FROM users WHERE active = 1 AND Name IS NOT NULL AND admin = 0";
+  $result_del = mysql_query($sql_del);
 ?>
 
 <!DOCTYPE html>
@@ -19,48 +22,90 @@
 	
 
 	<section id="body-content">
-        <section id="body-desktop" class="show-for-large-up">
+        <section id="body-desktop">
             <section id="home-content">
-            <?php  while ($row = mysql_fetch_assoc($result)): ?>
-              <div class="news-top">
-                	<div class="profile-header">  
-                		    <img src="<?php echo "{$row['image']}" ?>" alt="news">
-                	</div>
-                  
-                  <div class="news-carousel">
-                        <!--
-                        <span class="profile-name"><?php echo "{$row['full_name']}" ?></span>
-                        <span class="profile-cn"><?php echo "{$row['contact_number']}" ?></span>
-                        <span class="profile-fb"><?php echo "{$row['fb_url']}" ?></span>
-                        -->
-                        
-                        <?php include('database.php');
-                            $sql = "SELECT * FROM users,user_links WHERE users.ID = user_links.ID AND Name = '".$_SESSION['username']."' AND Password ='".$_SESSION['password']."'";
-                            $result  = mysql_query($sql);
-                            while ($row = mysql_fetch_assoc($result)): //loop until nothing is left
-                            echo "<img width = '200' src ='http://i2.hdslb.com/u_user/b0573d06e1f89d5a474a46fefe89f5af.jpg'><br>";
-                            echo $row['Name']."<br>#".$row['ID'];
-                            echo "<br>Joined: ".$row['date_joined']."<br>";
-                            echo "<a href='{$row['facebook']}'>Facebook</a> ";
-                            echo "<a href='{$row['twitter']}'>Twitter</a> ";
-                            echo "<a href='{$row['mfc']}'>MFC</a><br>";
-                            echo "Contact #:".$row['contact_number']."<br>";
-                            endwhile;
-
-                            ?>
-
-
-                            <a href = "profile/myFigures.php">My Figures</a>
-                            <a href = "logout.php">Log out</a><br>
-
-                            <a href="profile/addSocMed.php">Edit Social Media Account</a><br>
-                            <a href="profile/addPersonal.php">Edit Contact Number</a>
-                            <hr>
+            <div id="news">
+               <div class="news-admin">
+                  <div class="alerts">
+                    <?php if ($_SESSION["userAdded"] == 1): ?>
+                        <span class="success label news-alert"><i class="fi-alert"></i> User added. </span>
+                    <?php $_SESSION["userAdded"] = 0; endif; ?>
+                    <?php if ($_SESSION["userRemoved"] == 1): ?>
+                        <span class="success label news-alert"><i class="fi-alert"></i> User removed. </span>
+                    <?php $_SESSION["userRemoved"] = 0; endif; ?>
+                  </div>
+                  <div class="options"> 
+                  <?php if ($_SESSION["admin"] == 1): ?>       
+                    <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone"><span> Add/Remove User </span></a>
+                  <?php endif;?>
+                  </div>
+                
+                  <div class="news-admin">
+                    <div class="alerts alerts-nomargin">
+                        <?php if ($_SESSION["userActive"] == 1): ?>
+                        <span class="success label news-alert"><i class="fi-alert"></i> Account info edited. </span>
+                        <?php $_SESSION["userActive"] = 0; endif; ?>
+                    </div>
+                    <div class="options options-reg">
+                        <a href="#" data-reveal-id="modUserInfoMod" class="modNews"><span> Edit Account Info </span></a>
+                        <a href="logout.php" class="modNews"><span> Log Out </span></a>
+                    </div>
                   </div>
 
+                      <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modNewsForm" aria-hidden="true" role="dialog">
+                        <a href="#" data-reveal-id="addUserMod" class="arContent"><div><span> Add User </span></div></a>
+                        <a href="#" data-reveal-id="removeUserMod" class="arContent"><div><span> Remove User </span></div></a>
+                          <div id="addUserMod" class="reveal-modal" data-reveal aria-labelledby="addUserForm" aria-hidden="true" role="dialog">
+                               <form id="addUserForm" action="addUser.php" method="post">
+                                      <input type="text" placeholder="Temporary Username" class="add-tmp-uname" name="tmp-uname">
+                                      <input type="text" placeholder="Temporary Password" class="add-tmp-pwd" name="tmp-pword">
+                                      <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
+                                      <input type="submit" value="Add User" class="button login-submit" name="submit">
+                              </form>
+                          </div>              
+                          <div id="removeUserMod" class="reveal-modal" data-reveal aria-labelledby="removeUserForm" aria-hidden="true" role="dialog">
+                               <form id="removeUserForm" action="removeUser.php" method="post">
+                                      <span class="rmNewsMsg"> Please select user to delete: </span> 
+                                      <select name="removeUser" class="removeNews">
+                                        <?php while ($row = mysql_fetch_assoc($result_del)): ?>
+                                        <option value="<?php echo $row["id"]; ?>"> <?php echo $row['Name']; ?></option>
+                                        <?php endwhile; ?>
+                                      </select>
+                                      <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
+                                      <input type="submit" value="Delete" class="button login-submit" name="submit">
+                              </form>
+                          </div>
+                        </div>
+                    
+                </div>
+                    
+                      <div id="modUserInfoMod" class="reveal-modal" data-reveal aria-labelledby="modNewsForm" aria-hidden="true" role="dialog">
+                        <form id="userEditForm" action="editUser.php" method="post" enctype="multipart/form-data">
+                          <input type="text" placeholder="Full Name" class="add-name" name="rname">
+                          <input type="text" placeholder="Password" class="add-pword" name="pword">
+                          <input type="text" placeholder="Contact Number: (+63)" class="add-cn" name="cn">
+                          <input type="text" placeholder="E-mail Address" class="add-eadd" name="eadd">
+                          <input type="text" placeholder="Facebook URL: http://www.facebook.com/" class="add-fb" name="fb">
+                          <input type="file" name="user-img"> 
+                          <input type="hidden" name="postedBy" value="<?php echo $_SESSION["username"]; ?>">
+                          <input type="submit" value="Edit" class="button login-submit" name="submit">
+                        </form>
+                      </div>
+
+            <?php  while ($row = mysql_fetch_assoc($result)): ?>
+              <div class="account">
+                <div class="account-img">
+                  <img src="assets/db/users/<?php echo $row['user_img'];?>">
+                </div>
+                <div class="account-inf">
+                  <section class="account-dt">
+                    <span class="name"><?php echo $row['full_name'];?> <br> </span>
+                    <span class="contact-dt">(+63)<?php echo $row['contact_number'];?> | <?php echo $row['email'];?> | <a href="http://fb.com/<?php echo $row['fb_url'];?>">Facebook</a></span>
+                  </section>
+                </div>
               </div>
-              <hr><hr>
             <?php endwhile; ?>
+            </div>
             </section>
         </section>
     </section>

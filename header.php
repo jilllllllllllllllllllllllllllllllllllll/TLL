@@ -23,9 +23,9 @@
 <body>
     
     <section id="header-content">
-        <section id="topbar-desktop" class="show-for-large-up">
-
+        <section id="topbar-desktop">
             <div id="topbar-desktop-grid">
+            <div class="topbar">
                <a href="home.php">
                     <div class="li-desktop">
                         <i class="fi-home"></i>
@@ -44,8 +44,8 @@
                         <h1> Events </h1>
                     </div>
                 </a>
-                 <a href="#">
-                    <div id="logo-desktop" class="li-desktop li-desktop-logo no-hover">
+                 <a href="#" class="no-hover">
+                    <div id="logo-desktop">
                         <img src="assets/img/logo_.png">
                     </div>
                 </a>
@@ -68,23 +68,7 @@
                     </div>
                 </a>
             </div>
-
-            <!--
-            <div id="utilities">
-                <div id="setSession">
-                    <span class="inSession">
-                        <?php 
-                            //echo $_SESSION["username"] . " is currently logged in.";
-                        ?>
-                    </span>
-                </div>
-                <div id="logout">
-                    <span class="logout-t">
-                        <a href="logout.php"> Log Out </a>
-                    </span>
-                </div>
-            </div
-        -->
+            </div>
             
         </section> 
     </section>

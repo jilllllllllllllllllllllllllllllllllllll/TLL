@@ -50,8 +50,10 @@
 
 /*General & Text Content*/
 
-#header-content, #body-content, #body-desktop, #body-mobile, #topbar-mobile, #topbar-desktop, .form-row {
+#header-content, #body-content, #body-desktop, #body-mobile, #topbar-mobile, #topbar-desktop, .form-row, .row-events {
 	background: #FFF;
+	min-width: 800px !important
+
 }
 
 body {
@@ -60,8 +62,8 @@ body {
 
 h1 {
 	font-family: HomemadeApple !important;
-	font-size: 1em;
-	color: #000;
+	font-size: 100%;
+	color: #99C;
 }
 
 .align {
@@ -72,7 +74,6 @@ h1 {
 
 i {
 	position: relative;	
-	left: 50%;
 }
 
 .fi-home {
@@ -118,46 +119,39 @@ i {
 	position: absolute;
 	left: 0;
 	width: 100%;
+	min-width: 700px;
 	height: auto;
-	margin-top: 15px;	
+	margin-top: 2%;	
 }
 
 #logo-desktop {
-	max-width: 25%;
+	position: relative;
 	z-index: 98;
-	margin-top: 1em !important;
-	transform: translateY(-40%);
-	background-color: #FFF;
+	border-radius: 5000px;
 }
 
 #topbar-desktop-grid{
 	width: 80%;
 	height: 65px;
-	position: inherit;
+	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 	margin-top: 75px;
 	border-radius: 3000px;
-	
 }
 
-.li-desktop {
+.topbar a  {
 	float: left;
-	width: 13% !important;
+	font-size: 100% !important;
+	width: 14.28% !important;
 	padding-top: .5em;
-	margin: 0 5px;
 	border-radius: 1000px;
-	
+	text-align: center;
 	background: #FFF;
 }
 
-.li-desktop:hover {
+.topbar a:hover {
 	border: thin dashed #99C;
-}
-
-.li-desktop-logo {
-	border: thin dashed #99C;
-	width: 25%;
 }
 
 .active-li {
@@ -165,20 +159,16 @@ i {
 	border-width: 1.5px;
 }
 
+
+.no-hover {
+	position: relative;
+	transform: translateY(-30%);
+	border: 1px dashed #99C;
+}
+
 .no-hover:hover {
 	cursor: default;
-}
-
-.li-desktop h1 {
-	position: relative;
-	text-align: center;
-	color: #99C;
-}
-
-.li-desktop i {
-	position: relative;
-	left: 50% ;
-	transform: translateX(-50%);
+	border: 1px dashed #99C;
 }
 
 .search {
@@ -201,64 +191,9 @@ i {
 	background-color: #99C;
 }
 
-/*Topbar: Mobile*/
-
-#topbar-mobile {
-	position: fixed;
-	left: 0;
-	width: 100%;
-	height: 100px;
-}
-
-.small-3 {
-	float: left !important;
-	margin-top: 1em;
-}
-
-
-#logo-mobile {
-	max-width: 250px;
-	min-width: 10px;
-	margin-top: 1em;
-	background-color: #FFF;
-}
-
-.mob-icon {
-	border-radius: 2000px;	
-}
-
-.mob-icon:hover {
-	border-radius: 2000px;
-	background: #000;
-	transition: ease-in;
-}
-
-.topbar-line-left {
-	position: absolute;
-	left: 0;
-	top: 38px;
-	margin: 0;
-	width: 30%;
-}
-
-.topbar-line-right{
-	position: absolute;
-	right: 0;
-	top: 38px;
-	margin: 0;
-	width: 30%;
-}
-
-.active-icon {
-	background: url(../img/subtlenet2_@2X.png);	
-	border-radius: 2000px 2000px 0px 0px !important;
-	padding-bottom: .20em !important;
-}
-
-/*Body*/
-
 #body-desktop {
 	position: absolute;
+	min-width: 800px !important
 	left: 0;
 	top: 170px;
 	width: 100%;
@@ -267,18 +202,24 @@ i {
 }
 
 #home-content {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
+	position: absolute !important;
+	left: 50% !important;
+	transform: translateX(-50%) !important;
 	width: 80%;
+	min-width: 650px !important;
 	background: #FFF !important;
 	border-radius: 50px;
 	border: dashed #99C !important;
 	border-width: 1px !important;
+	padding-bottom: 5%;
 }
 
 #home-header {
 	position: relative;	
+}
+
+#topbar-desktop-grid a {
+	position: relative;
 }
 
 .header-text {
@@ -385,16 +326,11 @@ i {
 	border-bottom: thin double #9CF;
 }
 
-.index-subhead, .news-subhead {
-	position: relative;
+.index-subhead {
 	font-family: Walkway;
 	font-size: 2em;
 	color: #6CF;
-}
 
-.news-subhead {
-	font-size: .8em;
-	color: #000;
 }
 
 .login-head {
@@ -423,26 +359,57 @@ i {
 .login-submit {
 	position: relative;
 	border-radius: 10px !important;
+	background: #43AC6A;	
+	margin-top: 5%;
+	width: 40%;
 	left: 50%;
-	transform: translateX(-50%);	
+	transform: translateX(-50%);
 }
 
 .news-text {
-	margin-top: 2%;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);	
 	width: 75% !important;
+}
+
+.news-text div {
+	border-top: dashed 1px #99C;
+	padding: 2% .5% !important;
+	float: left;
+}
+
+.news-img {
+	width: 25%;
+	min-width: 25% !important;
+}
+
+.news-subhead {
+	position: relative;
+	font-size: 1em;
+	color: #000;
 	text-align: justify;
-	border: dashed #A3CCA3 1px;
-	border-radius: 50px;
-	padding: 4%;
-	padding-top: 1% !important;
+	font-family: ChampagneLimousines;
+	clear:both;
+}
+
+.news-content {
+	width: 75%;
+	min-height: 250px;
+}
+
+.news-img img {
+	position: relative;
+	min-height: 50%;
+	margin-top: 3%;
+	border-radius: 1000px;
+	box-shadow: 5px 5px 10px 0px #666;
 }
 
 .news-title {
 	position: relative;
-	color: #333;
+	color: #666;
+	font-family: Instruction;
 }
 
 .news-date {
@@ -452,37 +419,15 @@ i {
 	font-size: .5em;
 }
 
-#setSession {
-	position: absolute;
-	width: 32%;
-	margin-top: 35px;
-	left: 11%;
-	font-family: ChampagneLimousines;
-	background-color: #FFF;
-	border-radius: 10px;
+.news-tags {
+	position: relative;
+	color: #808080 !important;
+	font-size: .7em;
+	clear: both;
 }
 
-.inSession {
-	margin-left: 3%;
-	font-size: 1.2em;
-	color: #99C;
-}
-
-#logout {
-	position: absolute;
-	width: 32%;
-	margin-top: 35px;
-	right: 11%;
-	font-family: ChampagneLimousines;
-	background-color: #FFF;
-	border-radius: 10px;
-}
-
-.logout-t a{
-	float: right;
-	margin-right: 5%;
-	font-size: 1.2em;
-	color: #99C !important;
+.news-tags b {
+	font-size: 1em;
 }
 
 .login-error {
@@ -493,23 +438,30 @@ i {
 	height: 15em !important;
 }
 
-.news-header img, .events-header img {
-	border: double 1px #A3CCA3;
-	border-radius: 1000px;
-	max-width: 75%;
-	margin-left: 20%;
-}
-
-.profile-header img {
-	border: double 1px #A3CCA3;
-	border-radius: 1000px;
-	max-width: 75%;
-	margin-left: 20%;
-}
-
-.profile-header {
+.add-news-img {
 	position: relative;
-	width: 30% !important;
+	left: 50%;
+	width: 50% !important;
+	padding: .5em;
+	border: solid 1px #CCC; 
+}	
+
+.add-news-tags {
+	position: relative;
+	left: 50%;
+	width: 50% !important;
+}
+
+.news-header img {
+	border: double 1px #A3CCA3;
+	border-radius: 1000px;
+	max-width: 75%;
+	margin-left: 20%;
+}
+
+.news-header {
+	position: relative;
+	width: 100% !important;
 	margin-top: 5% !important;
 	border-right: solid 2px #A3CCA3;
 	float: left;
@@ -517,170 +469,95 @@ i {
 	height: 250px;
 }
 
-.news-header, .events-header {
-	position: relative;
-	width: 25% !important;
-	margin-top: 5% !important;
-	border-right: solid 2px #A3CCA3;
-	float: left;
-
-	height: 250px;
-}
-
-.events-header {
-	min-height: 500px;
-	height: auto !important;
+.news-head {
+	border: none !important;
 }
 
 .news-carousel {
 	position: relative;
-	width: 65% !important;
+	width: 80% !important;
+	min-width: 650px;
 	margin-top: 5% !important;
-	margin-left: 5%;
 	float: left;
-
-	height: 250px;
+	left: 50%;
+	transform: translateX(-50%);
+	overflow: hidden !important;
+	
 }
 
 .news-carousel img {
-	max-height: 250px;
+	position: relative;
+	max-width: 650px;
 }
 
 .news-top {
 	height: 325px;
 }
-.news-alert {
+
+.news-text span {
 	position: relative;
-	left: 10% !important;
-	height: 2em !important;
-	margin-top: 5%;
-	width: 50%;
+	float: left;
+	margin-left: 5%;
+}
+
+.news-alert, .news-error {
+	position: relative;
+	left: 5%;
+	width: 90%;
 	border-radius: 1000px;
-	font-family: ChampagneLimousines !important;
-	line-height: 1.5em !important;	
-	background: #69BD88 !important;
-}
-
-.news-alert span {
-	padding: 2% !important;
-}
-
-.addNews {
-	position: absolute;
-	right: 10% !important;
-	height: 1.5em !important;
-	margin-top: 5%;
-	border-radius: 1000px;
-	background: #43AC6A;
-	width: 20% !important;
-	text-align: center !important;
-}
-
-.addNews:hover {
-	background: #2F784A !important;
-}
-.addNews span {
-	color: #FFF !important;
 	font-family: ChampagneLimousines;
-	line-height: 1.5em !important;
-	font-size: 0.6875rem;
-	padding: 2% !important;
-	margin-top: 0 !important;
+	background: #69BD88 !important;
+	font-size: 80% !important;
+}
+
+.news-error {
+	background: #f04124 !important;
+}
+
+.news-alert span, .news-error span {
+	padding: 2%;
+}
+
+#modNewsMod div, #modNewsHLMod div {
+	background: #43AC6A;
+	position: relative;
+	text-align: center;
+	width: 50%;
+	margin-top: 2%;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 110%;
+}
+
+.modNews:hover, #modNewsMod div:hover, #modNewsHLMod div:hover, .modNewsHL:hover, .login-submit:hover {
+	background: #2F784A;
+}
+.modNews span, .arContent span, .arHLContent span, .modNewsHL span {
+	color: #FFF;
+	font-family: ChampagneLimousines;
+	font-size: 80% !important;
+}
+
+#removeNewForm {
+	float: left;
+}
+
+.rmNewsMsg {
+	font-family: ChampagneLimousines;
+	font-size: 1em;
 }
 
 .news-admin {
 	position: relative;
-	height: 3em;
 	width: 100%;
+	min-width: 650px !important;
+	z-index: 1;
 }
 
-.add-event-title {
+.news-top {
 	position: relative;
-	width: 50% !important;
-	float: left;
-}
-
-.add-event-date {
-	position: relative;
-	width: 40%;
-	float: left;
-	margin-left: 5%;
-}
-
-.add-event-location {
-	position: relative;
-	width: 50% !important;
-	float: left;
-}
-
-.add-event-page {
-	position: relative;
-	margin-left: 4% !important;
-	width: 45% !important;
-	float: left;
-}
-
-.addMonth {
-	width: 40%;
-}
-
-.addDate {
-	width: 20%;
-}
-
-.addYear {
-	width: 30%;
-}
-
-.events-text {
 	margin-top: 5%;
-	position: relative;
-	width: 65% !important;
-	border: dashed #A3CCA3 1px;
-	border-radius: 50px;
-	padding: 3%;
-	margin-left: 5%;
-	float: left;
-}
-
-.events-text span {
-	font-family: ChampagneLimousines;
-	text-align: justify;
-}
-
-.event-title {
-	font-size: 2em !important;
-	margin-left: 5%;
-}
-
-.event-date {
-
-}
-
-.event-location {
-	margin-left: 5%;
-}
-
-.event-desc {
-	margin-left: 5%;
-}
-
-.event-link {
-	margin-left: 70%;
-}
-
-.
-
-.profile-name {
-
-}
-
-.profile-cn {
-
-}
-
-.profile-fb {
-
+	z-index: 0; 
 }
 
 .list-body {
@@ -688,4 +565,378 @@ i {
 	top: 150px;
 	left: 50%;
 	transform: translateX(-50%);
+}
+
+.banner-error {
+	background: #FF4D4D !important;
+	background-color: #FF4D4D !important;
+}
+
+.events-header img{
+	position: relative;
+	margin-top: 2%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 30%;
+	border: dashed 1px #82AE92;
+	border-radius: 1000px;
+}
+
+.accordion-navigation {
+	margin-top: 2% !important;
+}
+
+.events-ln {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
+	height: 200px;
+}
+
+.date {
+	font-family: Instruction;
+	font-size: 200%;
+}
+
+.date-move {
+	margin-top: 10%;
+}
+
+.title {
+	font-family: ChampagneLimousines;
+	font-size: 150%;
+}
+
+.events-img {
+	position: relative;
+	opacity: .8;
+}
+
+.events-img-bg:hover {
+	opacity: .8 !important;
+}
+
+.events-img-bg {
+	position: absolute;
+	transform: translateY(-100%) !important;
+	z-index: 98;
+	opacity: .4;
+}
+
+.title-loc {
+	position: relative;
+	text-align: center;
+	color: #FFF;
+	z-index: 99;
+	transform: translate(-50%, -50%);
+	margin-top: -50%;
+	left: 50%;
+}
+
+.title-loc:hover {
+	color: #000;
+}
+
+.location {
+	font-family: ChampagneLimousines;
+	font-size: 75%;
+}
+
+.event {
+	position: relative;
+	float: left;
+	margin-top: 2.5%;
+	width: 25%;
+}
+
+.add-event-loc {
+	width: 50% !important;
+	float: left;
+}
+
+.add-event-src {
+	width: 47% !important;
+	margin-left: 3% !important;
+	float: left;
+}
+.add-event-title {
+	width: 75% !important;
+	float: left;
+}
+
+.add-event-date {
+	margin-left: 2%;
+	width: 23%;
+	float: left;
+}
+
+.addMonth {
+	width:75%;
+	float: left;
+}
+
+.addDate {
+	width: 23%;
+	margin-left: 2%;
+	float: left; 
+}
+
+.add-tmp-uname {
+	width: 48% !important;
+	float: left !important; 
+}
+
+.add-tmp-pwd {
+	width: 48% !important;
+	margin-left: 2% !important;
+	float: left !important; 
+}
+
+.add-faq-title {
+	position: relative;
+}
+
+.accordion .accordion-navigation > a, .accordion dd > a {
+	font-family: ChampagneLimousines !important;
+	background: #EAF2ED !important;
+}
+
+.accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
+	border: dashed 1px #82AE92;
+}
+
+.accordion .accordion-navigation > .content.active, .accordion dd > .content.active {
+	font-family: ChampagneLimousines !important;
+	border: double #A3CCA3 1px;
+	text-align: justify;
+}
+
+.imgWarning {
+	font-family: ChampagneLimousines !important;
+}
+
+.label {
+	padding: .5% !important;
+}
+
+.account {
+	position: relative;
+	margin-top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
+}
+
+.alerts i {
+	font-size: 80%;
+}
+
+.account div {
+	float: left;
+	margin-top: 5%;
+}
+
+.account-img {
+	width: 25%;
+	border-right: double 3px #CCC;
+}
+
+.account-img img {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
+	border-radius: 1000px;
+}
+
+.account-inf {
+	position: relative;
+	width: 75%;
+}
+
+.account-dt {
+	position: relative;
+	width: 90%;
+	left: 50%;
+	transform: translateX(-50%);
+
+	border-bottom: 1px #CCC double;
+}
+
+.name {
+	text-align: left;
+	font-family: Instruction;
+	font-size: 110%;
+}
+
+.date-joined {
+	text-align: right;
+	right: 0;
+}
+
+.contact-dt {
+	position: relative;
+	text-align: left;
+	font-family: ChampagneLimousines;
+	font-size: 90%;
+	margin-top: 0;
+}
+
+.modNews2 {
+	top: 10%;
+}
+
+#userEditForm input {
+	position: relative;
+	float: left;
+}
+
+.add-name {
+	width: 65% !important;
+}
+
+.add-pword {
+	width: 33% !important;
+	margin-left: 2% !important;
+}
+
+.add-cn {
+	width: 32% !important;
+}
+
+.add-eadd {
+	width: 32% !important;
+	margin-left: 2% !important;
+}
+
+.add-fb {
+	width: 32% !important;
+	margin-left: 2% !important;
+}
+
+#news {
+	margin-top: 5%;
+}
+
+.news-admin a {
+	position: relative !important;	
+	border-radius: 1000px;
+	background: #43AC6A;
+	width: 50%;
+	text-align: center;
+}
+
+.news-admin div {
+	position: relative;
+	float: left;
+	margin-top: 1%;
+}
+
+.alerts {
+	width: 60%
+}
+
+.options {
+	width: 40%;
+}
+
+.modNews span {
+	padding: 5% 3% !important;
+}
+
+.options-alone {
+	position: relative;
+	transform: translateX(50%);
+}
+
+.options-alone span { 
+	padding: 5% 20% !important;
+}
+
+.modNews {
+	margin: 0% 1%;
+}
+
+.options-reg a {
+	padding: 0% 4.5%;
+}
+
+.options-reg {
+	margin-top: .1% !important; 
+}
+
+.alerts-nomargin {
+	margin-top: .1% !important; 
+}
+
+.ll-table {
+	position: relative;
+	width: 80%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.hd-table {
+	position: relative;
+	width: 80%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.ll-table td, .ll-table th {
+	width: 16%;
+	text-align: center;
+}
+
+.hd-table td, .hd-table th {
+	width: 100% !important;
+	text-align: center;
+}
+
+.ll-table th, .hd-table th {
+	font-family: Instruction;
+	margin-top: 5%;
+}
+
+.ll-table tr, .hd-table tr {
+	font-family: ChampagneLimousines;
+	font-size: 90%;
+}
+
+.ll-table table, .hd-table table {
+	border: none;
+	margin-top: 5%;
+	border-top: dashed 1px #43AC6A;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#listForm input, #listForm select {
+	position: relative;
+	float: left;
+}
+
+.add-figure-nm {
+	width: 55% !important;
+}
+
+.add-figure-mn{
+	width: 43% !important;
+	margin-left: 2% !important;
+}
+
+.add-figure-sc {
+	width: 32%
+}
+
+.add-figure-dy {
+	width: 32%;
+	margin-left: 2%;
+}
+
+.add-figure-by {
+	width: 32%;
+	margin-left: 2%;
 }

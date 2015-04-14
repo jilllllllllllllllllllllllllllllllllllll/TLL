@@ -1,8 +1,10 @@
 <?php 
 	include('header.php');
 
-	$sql = "SELECT * FROM events";
+	$sql = "SELECT * FROM events WHERE active = 1 ORDER BY month, day";
     $result  = mysql_query($sql);
+    $sql_del= "SELECT * FROM events WHERE active = 1";
+    $result_del  = mysql_query($sql_del);
 ?>
 
 <!DOCTYPE html>
@@ -18,101 +20,96 @@
     ?>
 	
 	<section id="body-content">
-        <section id="body-desktop" class="show-for-large-up">
+        <section id="body-desktop">
             <section id="home-content">
+            <div id="news">
                 <div class="news-admin">
-                	<?php if ($_SESSION["eventAdded"]): ?>
-                		<span class="success label news-alert"> Event added. </span>
-                	<?php 
-                		$_SESSION["eventAdded"] = 0;
-                		endif; 
-                	?>
-
-                	<?php 
-    					if ($_SESSION["admin"] == "yes"): ?>
-    		                <a href="#" data-reveal-id="addEventsMod" class="addNews"><span>Add Event</span></a>
-    							<div id="addEventsMod" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    							  	<form id="modalTitle" action="addEvent.php" method="post" enctype="multipart/form-data">
-    									<input type="text" placeholder="Event Name" class="add-event-title" name="EName">
-                                        <div class="add-event-date">
-                                            <select name="EMonth" class="addMonth">
-                                                <option value="January">January</option>
-                                                <option value="February">January</option>
-                                                <option value="March">January</option>
-                                                <option value="April">January</option>
-                                                <option value="May">January</option>
-                                                <option value="June">March</option>
-                                                <option value="July">January</option>
-                                                <option value="August">January</option>
-                                                <option value="September">January</option>
-                                                <option value="October">January</option>
-                                                <option value="November">January</option>
-                                                <option value="December">January</option>
-                                            </select>
-                                            <select name="EDate" class="addDate">
-                                                <option value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
-                                                <option value="5">05</option>
-                                                <option value="6">06</option>
-                                                <option value="7">07</option>
-                                                <option value="8">08</option>
-                                                <option value="9">09</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                                <option value="28">28</option>
-                                                <option value="29">29</option>
-                                                <option value="30">30</option>
-                                                <option value="31">31</option>
-                                            </select>
-                                            <select name="EYear" class="addYear">
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="1995">1995</option>
-                                            </select>
+                  <div class="alerts">
+                	<?php if ($_SESSION["eventAdded"] == 1): ?>
+                		<span class="success label news-alert"><i class="fi-alert"></i> Event added. </span>
+                	<?php $_SESSION["eventAdded"] = 0; endif; ?>
+                    <?php if ($_SESSION["eventRemoved"] == 1): ?>
+                        <span class="success label news-alert"><i class="fi-alert"></i> Event removed. </span>
+                    <?php $_SESSION["eventRemoved"] = 0; endif; ?>
+                    <?php if ($_SESSION["eventsError"] == 1): ?>
+                        <span class="success label news-alert banner-error"> <i class="fi-alert"></i> Event cannot be uploaded. </span>
+                    <?php $_SESSION["eventsError"] = 0; endif; ?>
+                  </div>
+                  <div class="options">
+                <?php if ($_SESSION["admin"] == 1): ?>       
+                    <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone"><span> Add/Remove Event </span></a>
+                  </div>
+                      <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modNewsForm" aria-hidden="true" role="dialog">
+                        <a href="#" data-reveal-id="addNewsMod" class="arContent"><div><span> Add Event </span></div></a>
+                        <a href="#" data-reveal-id="removeNewsMod" class="arContent"><div><span> Remove Event </span></div></a>
+                                        <div id="addNewsMod" class="reveal-modal" data-reveal aria-labelledby="newsForm" aria-hidden="true" role="dialog">
+                                            <form id="eventsForm" action="addEvent.php" method="post" enctype="multipart/form-data">
+                                                <input type="text" placeholder="Title" class="add-event-title" name="eventName">
+                                                    <div class="add-event-date">
+                                                        <select name="month" class="addMonth">
+                                                            <option value="Jan"> Jan </option>
+                                                            <option value="Feb"> Feb </option>
+                                                            <option value="Mar"> Mar </option>
+                                                            <option value="Apr"> Apr </option>
+                                                            <option value="May"> May </option>
+                                                            <option value="Jun"> Jun </option>
+                                                            <option value="Jul"> Jul </option>
+                                                            <option value="Aug"> Aug </option>
+                                                            <option value="Sep"> Sep </option>
+                                                            <option value="Oct"> Oct </option>
+                                                            <option value="Nov"> Nov </option>
+                                                            <option value="Dec"> Dec </option>
+                                                        </select>
+                                                        <select name="date" class="addDate"> 
+                                                            <?php for ($i=1;$i<=31;$i++): ?><option value=<?php echo $i; ?>><?php echo $i; ?></option><?php endfor;?>
+                                                        </select> 
+                                                    </div>
+                                                <input type="text" placeholder="Location" class="add-event-loc" name="eventLoc"> 
+                                                <input type="text" placeholder="Event URL: http://" class="add-event-src" name="eventSource">
+                                                <span class="imgWarning"> Image must be a nicely shaped square. O u O </span>
+                                                <input type="file" name="events-img">
+                                                <input type="hidden" name="postedBy" value="<?php echo $_SESSION["username"]; ?>">
+                                                <input type="submit" value="Create" class="button login-submit" name="submit">
+                                            </form>
                                         </div>
-                                        <input type="text" placeholder="Event Location" class="add-event-location" name="ELoc">
-                                        <input type="text" placeholder="Event Page" class="add-event-page" name="EPage">   
-    		                			<textarea class="add-news-content" name="EDetails"></textarea>
-    		                			<input type="submit" value="Submit" class="button login-submit" name="submit">
-    		                			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-    								</form>
-    							</div>
-    				<?php endif;?>
+                          <div id="removeNewsMod" class="reveal-modal" data-reveal aria-labelledby="removeNewsForm" aria-hidden="true" role="dialog">
+                               <form id="removeNewsForm" action="removeNewsHL.php" method="post" enctype="multipart/form-data">
+                                      <span class="rmNewsMsg"> Please select event item to delete: </span> 
+                                      <select name="removeEvent" class="removeNews">
+                                        <?php while ($row = mysql_fetch_assoc($result_del)): ?>
+                                        <option value="<?php echo $row["id"]; ?>"> <?php echo $row['title']; ?></option>
+                                        <?php endwhile; ?>
+                                      </select>
+                                      <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
+                                      <input type="submit" value="Delete" class="button login-submit" name="submit">
+                              </form>
+                          </div>
+                        </div>
+                    <?php endif;?>
                 </div>
 
             	<div class="events-header">
             		<img src="assets/img/events.png" alt="news">
             	</div>
 
+                            <!--<img src="assets/db/events/<?php echo $row['img_src']; ?>" class="events-img">-->
 
-                <?php while ($row = mysql_fetch_assoc($result)): ?>
-                <div class="events-text">
-                        <span class="event-title"> <?php echo "{$row['event_name']}"; ?>: </span>
-                        <span class="event-date"> <?php echo "{$row['event_date']}"; ?><br> </span>
-                        <span class="event-location"> Location: <?php echo "{$row['event_location']}"; ?><br><br> </span>
-                        <span class="event-desc"> <?php echo "{$row['event_descritption']}"; ?><br><br></span>
-                        <span class="event-link"> Source: <?php echo "<a href='{$row['event_page_link']}'>Event Page</a>"; ?></span>
+                <div class="events-ln">
+                    <?php while ($row = mysql_fetch_assoc($result)): ?>
+                        <a class="eventsAfter" href="<?php echo $row['event_url']; ?>">
+                            <div class="event">
+                                <img src="assets/db/events/<?php echo $row['img_src']; ?>" class="events-img">
+                                <img src="assets/img/bg.png" class="events-img-bg">
+                                <div class="title-loc">
+                                    <span class="date"> <?php echo $row['date']; ?> <br> </span>
+                                    <span class="title"> <?php echo $row['title']; ?> <br> </span>
+                                    <span class="location"> <?php echo $row['location']; ?> <br> </span>
+                                </div>
+                            </div>
+                        </a>
+                    <?php endwhile; ?>
                 </div>
-                <?php endwhile; ?>
-                
+            </div>
             </section>
         </section>
     </section>

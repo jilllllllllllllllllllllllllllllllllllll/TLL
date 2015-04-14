@@ -1,8 +1,20 @@
 <?php 
-	include('header.php');
+  include('header.php');
 
-	$sql = "SELECT * FROM lending_list_requirements, events WHERE lending_list_requirements.requirements_pk = events.event_pk";
+  $sql_ll = "SELECT * FROM lending_list";
+  $result_ll  = mysql_query($sql_ll);
+  $sql_ld = "SELECT * FROM users WHERE active = 1 AND Name IS NOT NULL";
+  $result_ld  = mysql_query($sql_ld);
+  $sql_dl = "SELECT * FROM lending_list WHERE figure_name IS NOT NULL";
+  $result_dl  = mysql_query($sql_dl);
+  $sql_hd = "SELECT * FROM users WHERE active = 1 AND Name IS NOT NULL AND idHolder = 0";
+  $result_hd  = mysql_query($sql_hd);
+  $sql_hddl = "SELECT * FROM users WHERE active = 1 AND idHolder = 1";
+  $result_hddl  = mysql_query($sql_hddl);
+  $sql = "SELECT * FROM users WHERE active = 1 AND idHolder = 1";
   $result  = mysql_query($sql);
+
+  $headers = $col = "";
 ?>
 
 <!DOCTYPE html>
@@ -13,138 +25,164 @@
 </head>
 
 <body>
-  <div class="list-body">
-	 <center>
-    <br><br><br>
-    <a href= "#" class="button">Add New List</a>
-    <a href = "logout.php" class="button" >Log out</a>
-    
-    <h3>Requirements</h3>
-    <table>
-      <tr>
-      <th>Event</th>
-      <th>Large</th>
-      <th>Small</th>
-      <th>Articulated </th>
-      <th>Theme</th>
-      <th>Comment</th>
-      <?php
-      if ($_SESSION["admin"] == "yes"){
-      echo "<th></th>";
-      }
-      ?>
-      </tr>
-      <tr>
-      <?php while ($row = mysql_fetch_assoc($result)):
-      echo "<td> {$row['event_name']} </td>";
-      echo "<td> {$row['req_large']} </td>";
-      echo "<td> {$row['req_small']} </td>";
-      echo "<td> {$row['req_articulated']} </td>";
-      echo "<td> {$row['theme']} </td>";
-      echo "<td> {$row['comment']} </td>";
-      if ($_SESSION["admin"] == 1){
-        echo "<td> <a href='list/editRequirements.php'>Edit Requirements</a> </td>";
-      }
-            
-      ?>
-      </tr>
-    <?php //INSERT INTO `the_lending_list`.`lending_list_requirements` (`requirements_pk`, `req_large`, `req_small`, `req_articulated`, `theme`, `comment`)
-      // VALUES (NULL, '10', '20', '10', 'Matsuri', 'Total of 40 figs');?>
-    
-    <?php endwhile; ?>
-    </table><hr>
-    
-    
-    
-    
-    
-    
-    
-    <?php // =================== LENDING LIST  HERE  ================?>
-    
-    <h2>List</h2>
-    <?php
-    $sql = "SELECT * FROM lending_list";
-    $result  = mysql_query($sql);
-    
-    $headers = $col = "";
-    
+   <?php
+    if ($_SESSION["username"]):
     ?>
-    <table>
-      <tr>
-      <th>#</th>
-      <th>Manufacturer</th>
-      <th>Figure Name</th>
-      <th>Size</th>
-      <th>Lender</th>
-      <th>Days</th>
-      <?php
-      if ($_SESSION["admin"] == "yes"){
-      echo "<th>Comments</th>";
-      }
-      ?>
-      <th>Edit</th>
-      <th>Delete</th>
-      </tr>
-      <tr>
-      <?php while ($row = mysql_fetch_assoc($result)): //loop until nothing is left
-      echo "<td> {$row['pk_lending_list']} </td>";
-      echo "<td> {$row['manufacturer']} </td>";
-      echo "<td> {$row['figure_name']} </td>";
-      echo "<td> {$row['scale']} </td>";
-      echo "<td> {$row['Name']} </td>";
-      echo "<td> {$row['days']} </td>";
-      if ($_SESSION["admin"] == "yes"){
-        echo "<td> {$row['comments']}"." <a href='list/comment.php'>Add/Edit Comment</a> </td>";
-      }
-      if ( $row['Name'] == $_SESSION["username"] || $_SESSION["admin"] == "yes"){
-        $_SESSION["itemID"] = $row['pk_lending_list'];
-        echo "<td><a href='list/editing.php'>Edit</a></td>";
-        echo "<td><a href='list/deleting.php'>Delete</a></td>";
-        } 
-            
-      ?>
-      </tr>
-    <?php //echo $row['Name'];?>
-    
-    <?php endwhile; ?>
-    </table>
-    <?php 
-    /*
-     
-    INSERT INTO `the_lending_list`.`lending_list` (`pk_lending_list`, `manufacturer`,
-     `scale`, `figure_name`, `Name`, `days`) 
-    VALUES ('0', 'GSC', 'Large', 'Tomoe Mami', 'Jill', '2');
-     */?>
-    <a href="list/add.php" class="button"> Add</a> <hr>
-    <?php //===================ID HOLDERS HERE ====================?>
-    <?php 
-      $sql = "SELECT * FROM users WHERE users.idHolder = 'yes'";
-      $result  = mysql_query($sql);
-    ?>
-      <table>
-      <tr>
-      <th>ID HOLDERS</th>
-      <?php
-      if ($_SESSION["admin"] == "yes"){
-      echo "<th>Edit</th>";
-      }
-      ?>
-      </tr>
-      <tr>
-      <?php while ($row = mysql_fetch_assoc($result)): //loop until nothing is left
-      echo "<td> {$row['Name']} </td>";
-      if ($_SESSION["admin"] == "yes"){
-        echo "<td> <a href=''>Remove</a> </td>";
-      }
-      ?>
-      </tr>
-    
-    <?php endwhile; ?>
-    </table>
   
-    
-    </center>
-</div>
+
+  <section id="body-content">
+        <section id="body-desktop">
+            <section id="home-content">
+            <div id="news">
+              <div class="news-admin">
+                <div class="alerts">
+                  <?php if ($_SESSION["figureAdded"] == 1): ?>
+                      <span class="success label news-alert"> <i class="fi-alert"></i> Entry added.  </span>
+                  <?php $_SESSION["figureAdded"] = 0; endif; ?>
+                  <?php if ($_SESSION["figureRemoved"] == 1): ?>
+                      <span class="success label news-alert"> <i class="fi-alert"></i> Entry removed. </span>
+                  <?php $_SESSION["figureRemoved"] = 0; endif; ?>
+
+                  <?php if ($_SESSION["idHolderAdded"] == 1): ?>
+                      <span class="success label news-alert"> <i class="fi-alert"></i> ID holder added.  </span>
+                  <?php $_SESSION["idHolderAdded"] = 0; endif; ?>
+                  <?php if ($_SESSION["idHolderRemoved"] == 1): ?>
+                      <span class="success label news-alert"> <i class="fi-alert"></i> ID Holder removed. </span>
+                  <?php $_SESSION["idHolderRemoved"] = 0; endif; ?>
+
+                  <?php if ($_SESSION["admin"] == 1): ?>
+                </div>
+                <div class="options">       
+                    <a href="#" data-reveal-id="modNewsMod" class="modNews"><span> Add/Remove Figure </span></a>
+                    <a href="#" data-reveal-id="modNewsHLMod" class="modNews modNewsHL"><span> Add/Remove Lender </span></a>
+                </div>
+                      <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modListForm" aria-hidden="true" role="dialog">
+                        <a href="#" data-reveal-id="addListMod" class="arContent"><div><span> Add Figure </span></div></a>
+                        <a href="#" data-reveal-id="removeListMod" class="arContent"><div><span> Remove Figure </span></div></a>
+
+                          <div id="addListMod" class="reveal-modal" data-reveal aria-labelledby="listForm" aria-hidden="true" role="dialog">
+                              <form id="listForm" action="addList.php" method="post">
+                                      <input type="text" placeholder="Figure Name" class="add-figure-nm" name="figure_name">
+                                      <input type="text" placeholder="Manufacturer" class="add-figure-mn" name="manufacturer">
+                                      <select name="scale" class="add-figure-sc">
+                                        <option value="Large">Large</option>
+                                        <option value="Small">Small</option>
+                                        <option value="Articulated">Articulated</option>
+                                      </select> 
+                                      <select name="days" class="add-figure-dy">
+                                        <option value="1">01 Day</option>
+                                        <option value="2">02 Days</option>
+                                      </select> 
+                                      <select name="username" class="add-figure-dy">
+                                        <?php while ($row = mysql_fetch_assoc($result_ld)): ?>
+                                          <option value="<?php echo $row['Name']; ?>"><?php echo $row['Name']; ?></option>
+                                        <?php endwhile; ?>
+                                      </select> 
+                                      <input type="submit" value="Add" class="button login-submit" name="submit">
+                              </form>
+                          </div>
+                          <div id="removeListMod" class="reveal-modal" data-reveal aria-labelledby="removeNewsForm" aria-hidden="true" role="dialog">
+                               <form id="removeNewsForm" action="removeFigure.php" method="post" enctype="multipart/form-data">
+                                      <span class="rmNewsMsg"> Please select figure entry to delete: </span> 
+                                      <select name="removeFigure" class="removeNews">
+                                        <?php while ($row = mysql_fetch_assoc($result_dl)): ?>
+                                          <option value="<?php echo $row["id"]; ?>"> <?php echo $row['figure_name']; ?></option>
+                                        <?php endwhile; ?>
+                                      </select>
+                                      <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
+                                      <input type="submit" value="Delete" class="button login-submit" name="submit">
+                              </form>
+                          </div>
+                        </div>
+
+                    
+                      <div id="modNewsHLMod" class="reveal-modal" data-reveal aria-labelledby="modNewsHLForm" aria-hidden="true" role="dialog">
+                        <a href="#" data-reveal-id="addNewsHLMod" class="arHLContent"><div><span> Add ID Holder </span></div></a>
+                        <a href="#" data-reveal-id="removeNewsHLMod" class="arHLContent"><div><span> Remove ID Holder </span></div></a>
+
+                          <div id="addNewsHLMod" class="reveal-modal" data-reveal aria-labelledby="newsHLForm" aria-hidden="true" role="dialog">
+                              <form id="addIDHolderForm" action="addIDHolder.php" method="post">
+                                      <?php while ($row = mysql_fetch_assoc($result_hd)): ?>
+                                          <option value="<?php echo $row["id"]; ?>"> <?php echo $row['Name']; ?></option>
+                                      <?php endwhile; ?> 
+                                      <input type="hidden" name="postedBy" value="<?php echo $_SESSION["username"]; ?>">
+                                      <input type="submit" value="Submit" class="button login-submit" name="submit">
+                              </form>
+                          </div>
+                          <div id="removeNewsHLMod" class="reveal-modal" data-reveal aria-labelledby="removeNewsHLForm" aria-hidden="true" role="dialog">
+                               <form id="removeNewsHLForm" action="removeIDHolder.php" method="post" enctype="multipart/form-data">
+                                      <span class="rmNewsMsg"> Please select user to remove from the list: </span> 
+                                      <select name="removeNewsHL" class="removeNews">
+                                        <?php while ($row = mysql_fetch_assoc($result_hddl)): ?>
+                                        <option value="<?php echo $row["id"]; ?>"> <?php echo $row['Name']; ?></option>
+                                        <?php endwhile; ?>
+                                      </select>
+                                      <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
+                                      <input type="submit" value="Delete" class="button login-submit" name="submit">
+                              </form>
+                          
+                          </div>
+                        </div>
+                <?php endif;?>
+              </div>
+              <div class="events-header">
+                    <img src="assets/img/list.png">
+              </div>
+              <div class="ll-table">
+                <table>
+                  <tr>
+                  <th>#</th>
+                  <th>Manufacturer</th>
+                  <th>Figure Name</th>
+                  <th>Size</th>
+                  <th>Lender</th>
+                  <th>Days</th>
+                  </tr>
+
+                  
+                  <?php while ($row = mysql_fetch_assoc($result_ll)) : ?>
+                  <tr>
+                  <td> <?php echo $row['pk_lending_list']; ?> </td>
+                  <td> <?php echo $row['manufacturer']; ?> </td>
+                  <td> <?php echo $row['figure_name']; ?> </td>
+                  <td> <?php echo $row['scale']; ?> </td>
+                  <td> <?php echo $row['Name']; ?> </td>
+                  <td> <?php echo $row['days']; ?> </td>
+                  </tr>
+                  <?php endwhile; ?>
+                  
+                </table>
+              </div>
+              <hr><hr>
+              <div class="hd-table">
+                <table>
+                  <tr><th>ID HOLDERS</th></tr>
+                  <?php while ($row = mysql_fetch_assoc($result)): ?>
+                    <tr><td> <?php echo $row['Name']; ?> </td></tr>
+                  <?php endwhile; ?>
+                </table>
+              </div>
+              </section> 
+            </div>            
+            </section>
+        </section>
+    </section>
+
+  
+  <?php 
+        else :
+            header('Location: index.php');
+        endif;
+    ?>
+
+  <script src="assets/js/foundation.js"></script>
+  <script src="assets/js/foundation.orbit.js"></script>
+
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/foundation.min.js"></script>
+  <script type="text/javascript"> 
+    $(document).foundation();
+  </script>
+
 </body>
 </html>

@@ -18,7 +18,7 @@
     ?>
 
     <section id="body-content">
-        <section id="body-desktop" class="show-for-large-up">
+        <section id="body-desktop">
             <section id="home-content">
             
                 <div id="home-header"> 
