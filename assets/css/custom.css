@@ -578,7 +578,6 @@ i {
 	left: 50%;
 	transform: translateX(-50%);
 	width: 30%;
-	border: dashed 1px #82AE92;
 	border-radius: 1000px;
 }
 
@@ -722,7 +721,7 @@ i {
 
 .account {
 	position: relative;
-	margin-top: 10%;
+	margin-top: .5%;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 90%;

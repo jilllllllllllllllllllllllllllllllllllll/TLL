@@ -22,7 +22,7 @@
 
 		if(($_FILES["activityHL-img"]['tmp_name'])) {
 			list($width, $height) = getimagesize($_FILES["activityHL-img"]['tmp_name']);
-			if(($width%800 != 0) AND ($height%250 != 0)) {
+			if(($width%800 > 0) || ($height%250 > 0)) {
 				$_SESSION["bannerError"] = 1;
 			} else {
 				$upload = move_uploaded_file($_FILES['activityHL-img']['tmp_name'], $target_file);
