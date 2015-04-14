@@ -51,11 +51,13 @@
                       <span class="success label news-alert"> <i class="fi-alert"></i> Banner removed. </span>
                   <?php $_SESSION["newsHLRemoved"] = 0; endif; ?>
 
-      					  <?php if ($_SESSION["admin"] == 1): ?>
+      					  
                 </div>
-                <div class="options">       
+                <div class="options absolute">    
+                  <?php if ($_SESSION["admin"] == 1): ?>   
                     <a href="#" data-reveal-id="modNewsMod" class="modNews"><span> Add/Remove Content </span></a>
                     <a href="#" data-reveal-id="modNewsHLMod" class="modNews modNewsHL"><span> Add/Remove Banner </span></a>
+                  <?php endif;?>
                 </div>
                       <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modNewsForm" aria-hidden="true" role="dialog">
                         <a href="#" data-reveal-id="addNewsMod" class="arContent"><div><span> Add Content </span></div></a>
@@ -113,7 +115,7 @@
                           
                           </div>
                         </div>
-    			      <?php endif;?>
+    			      
               </div>
               <div class="events-header">
                 		<img src="assets/img/news.png">

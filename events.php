@@ -37,7 +37,8 @@
                   </div>
                   <div class="options">
                 <?php if ($_SESSION["admin"] == 1): ?>       
-                    <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone"><span> Add/Remove Event </span></a>
+                    <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone absolute"><span> Add/Remove Event </span></a>
+                <?php endif; ?>
                   </div>
                       <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modNewsForm" aria-hidden="true" role="dialog">
                         <a href="#" data-reveal-id="addNewsMod" class="arContent"><div><span> Add Event </span></div></a>
@@ -85,7 +86,7 @@
                               </form>
                           </div>
                         </div>
-                    <?php endif;?>
+                    
                 </div>
 
             	<div class="events-header">

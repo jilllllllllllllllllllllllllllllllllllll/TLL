@@ -34,7 +34,7 @@
                         <span class="success label news-alert"><i class="fi-alert"></i> User removed. </span>
                     <?php $_SESSION["userRemoved"] = 0; endif; ?>
                   </div>
-                  <div class="options"> 
+                  <div class="options absolute"> 
                   <?php if ($_SESSION["admin"] == 1): ?>       
                     <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone"><span> Add/Remove User </span></a>
                   <?php endif;?>
@@ -57,7 +57,7 @@
                         <a href="#" data-reveal-id="removeUserMod" class="arContent"><div><span> Remove User </span></div></a>
                           <div id="addUserMod" class="reveal-modal" data-reveal aria-labelledby="addUserForm" aria-hidden="true" role="dialog">
                                <form id="addUserForm" action="addUser.php" method="post">
-                                      <input type="text" placeholder="Temporary Username" class="add-tmp-uname" name="tmp-uname">
+                                      <input type="text" placeholder="Username" class="add-tmp-uname" name="uname">
                                       <input type="text" placeholder="Temporary Password" class="add-tmp-pwd" name="tmp-pword">
                                       <input type="hidden" name="delBy" value="<?php echo $_SESSION["username"]; ?>">
                                       <input type="submit" value="Add User" class="button login-submit" name="submit">

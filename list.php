@@ -50,11 +50,13 @@
                       <span class="success label news-alert"> <i class="fi-alert"></i> ID Holder removed. </span>
                   <?php $_SESSION["idHolderRemoved"] = 0; endif; ?>
 
-                  <?php if ($_SESSION["admin"] == 1): ?>
+                  
                 </div>
-                <div class="options">       
+                <div class="options absolute"> 
+                <?php if ($_SESSION["admin"] == 1): ?>      
                     <a href="#" data-reveal-id="modNewsMod" class="modNews"><span> Add/Remove Figure </span></a>
                     <a href="#" data-reveal-id="modNewsHLMod" class="modNews modNewsHL"><span> Add/Remove IDs </span></a>
+                <?php endif;?>
                 </div>
                       <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modListForm" aria-hidden="true" role="dialog">
                         <a href="#" data-reveal-id="addListMod" class="arContent"><div><span> Add Figure </span></div></a>
@@ -125,7 +127,7 @@
                           
                           </div>
                         </div>
-                <?php endif;?>
+                
               </div>
               <div class="events-header">
                     <img src="assets/img/list.png">

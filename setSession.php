@@ -13,7 +13,7 @@
 	$sql = "SELECT * FROM users WHERE active = 1 AND Name = '".$_POST['username']."' AND Password ='".md5($_POST['password'])."'";
 	$result = mysql_query($sql);
 
-	$sql_tmp = "SELECT * FROM users WHERE active = 1 AND tmp_uname = '".$_POST['username']."' AND tmp_pword ='".md5($_POST['password'])."'";
+	$sql_tmp = "SELECT * FROM users WHERE active = 1 AND Name = '".$_POST['username']."' AND tmp_pword ='".md5($_POST['password'])."'";
 	$result_tmp = mysql_query($sql_tmp);
 
 		while ($row = mysql_fetch_assoc($result)){ 

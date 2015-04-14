@@ -1,8 +1,7 @@
 <?php 
-	include('header.php');
-
-	$sql = "SELECT * FROM faq";
-	$result  = mysql_query($sql);
+  include('header.php');
+  $sql = "SELECT * FROM faq";
+  $result  = mysql_query($sql);
   $sql_del = "SELECT * FROM faq";
   $result_del  = mysql_query($sql_del);
 ?>
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-	 <?php
+   <?php
     if ($_SESSION["username"]):
     ?>
-	
+  
 
-	<section id="body-content">
+  <section id="body-content">
         <section id="body-desktop">
             <section id="home-content">
               <div id="news">
@@ -35,7 +34,8 @@
                   </div>
                   <div class="options">
                     <?php if ($_SESSION["admin"] == 1): ?>       
-                     <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone"><span> Add/Remove Item </span></a>
+                     <a href="#" data-reveal-id="modNewsMod" class="modNews options-alone absolute"><span> Add/Remove Item </span></a>
+                    <?php endif;?>
                   </div>
                      <div id="modNewsMod" class="reveal-modal" data-reveal aria-labelledby="modNewsForm" aria-hidden="true" role="dialog">
                         <a href="#" data-reveal-id="addFAQMod" class="arContent"><div><span> Add Question </span></div></a>
@@ -59,11 +59,11 @@
                               </form>
                           </div>
                       </div>
-                <?php endif;?>
+                
                 </div>
-                	<div class="events-header">
-                		    <img src="assets/img/faq.png" alt="news">
-                	</div>
+                  <div class="events-header">
+                        <img src="assets/img/faq.png" alt="news">
+                  </div>
                   
                     <div class="news-carousel">
                       <ul class="accordion" data-accordion>
@@ -86,8 +86,8 @@
         </section>
     </section>
 
-	
-	<?php 
+  
+  <?php 
         else :
             header('Location: index.php');
         endif;

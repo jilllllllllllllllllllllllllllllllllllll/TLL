@@ -13,11 +13,11 @@
 
 		include 'database.php';
 
-		$tmpUser 	= mysql_real_escape_string($_POST['tmp-uname']);
+		$user 	= mysql_real_escape_string($_POST['uname']);
 		$tmpPwd		= md5($_POST['tmp-pword']);
 		$admin 		= $_POST['postedBy'];
 
-		$sql = "INSERT INTO `users` (`tmp_uname`, `tmp_pword`,  `createdby`) VALUES ('$tmpUser', '$tmpPwd', '$admin')";
+		$sql = "INSERT INTO `users` (`Name`, `tmp_pword`,  `createdby`) VALUES ('$user', '$tmpPwd', '$admin')";
 		$result  = mysql_query($sql);
 
 		$_SESSION["userAdded"] = 1;
